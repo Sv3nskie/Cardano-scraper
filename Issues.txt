@@ -1,0 +1,68 @@
+This is just a basic list of known issues and how to tackle them.
+This is more for me than for anything
+
+Reported 2022-03-24 1212
+
+ISSUE: Threads that check the current period and then
+       wait until it's over might wait until two or
+       more periods later and thus skip one of the
+       periods/timeframes.
+
+SOLUTION: Make the period one of the arguments to 
+          the function. Only call `getCurrentPeriod`
+          when first starting the thread, and then
+          re-call the function with the same arguments,
+          but increment the period by 1. 
+IMPLEMENTED
+
+ISSUE: It is unclear when to say a 'period' has ended;
+       the timestamp from the oura output does not
+       necessarily match up with the (approximate)
+       time it is received.
+
+SOLUTION: Attach a listener to the thread that reads
+          in Oura output, and have it write to a TVar
+          whenever the input time changes. This TVar
+          can then be used to get the approximate
+          'time' when needed.
+IMPLEMENTED
+
+ISSUE: Using PeriodIndex for indexing of both period
+       and timeframe can make it confusing which of
+       the two is being talked about in a function.
+
+SOLUTION : Make a separate Timeframe type that includes
+           the timeframe index and the number of periods 
+           per timeframe (implemented as a data kind) to
+           easily convert back and forth between the two.
+           Putting the ratio into the type allows you to
+           still use newtype deriving.
+
+ALTERATION: Since the timeframe length is not necessarily
+            known at compile time, just make the length
+            a second entry in the type. This allows more
+            safety, since it doesn't make much sense to
+            treat a Timeframe like a number anyway.
+IMPLEMENTED
+
+ISSUE: Unlisted tokens generate a request to the metadata
+       server each time they appear. This means that 
+       handling them is considerably slower than for
+       known tokens, since they can't be cached.
+
+SOLUTION: Have the Known Token map instead store a type
+          of (Either UTCTime KnownToken) as the value.
+          The UTCTime would reference the last time the
+          metadata server was accessed for that particular
+          token, so that if enough time had passed, it 
+          could try again.
+
+ISSUE: Currently, the ThreadMap only contains indexes
+       assets by their asset class, not by the DEX on
+       which the transaction occurred. This could be
+       a problem, since different DEXes likely have
+       different ratios of tokens, and thus could give
+       substantially different exchange rates for the
+       same token. This will need to be addressed before
+       adding support for other DEXes.
+       

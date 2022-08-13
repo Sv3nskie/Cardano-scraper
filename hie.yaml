@@ -1,0 +1,13 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "DexMarketCap:lib"
+
+    - path: "./app/Main.hs"
+      component: "DexMarketCap:exe:DexMarketCap-exe"
+
+    - path: "./app/Paths_DexMarketCap.hs"
+      component: "DexMarketCap:exe:DexMarketCap-exe"
+
+    - path: "./test"
+      component: "DexMarketCap:test:DexMarketCap-test"

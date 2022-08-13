@@ -1,0 +1,224 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.34.4.
+--
+-- see: https://github.com/sol/hpack
+
+name:           DexMarketCap
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/mlabs-haskell/DexMarketCap#readme>
+homepage:       https://github.com/mlabs-haskell/DexMarketCap#readme
+bug-reports:    https://github.com/mlabs-haskell/DexMarketCap/issues
+author:         David Wilson
+maintainer:     example@example.com
+copyright:      2022 MLabs
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/mlabs-haskell/DexMarketCap
+
+library
+  exposed-modules:
+      Dex.Arguments
+      Dex.Async
+      Dex.Async.Linked
+      Dex.Async.Pooled.Internal.Types
+      Dex.Async.Pooled.Types
+      Dex.Async.PooledAlt.Internal.Types
+      Dex.Async.PooledAlt.Types
+      Dex.Candles
+      Dex.Candles.CandleMap
+      Dex.Candles.Managers
+      Dex.Candles.PointMap
+      Dex.Candles.ThreadMap
+      Dex.Candles.Time
+      Dex.Candles.Time.Period
+      Dex.Candles.Time.Timeframe
+      Dex.Candles.Types
+      Dex.Database.Actions
+      Dex.Database.Initialise
+      Dex.Database.Parsers
+      Dex.Database.SupplyCache
+      Dex.Database.Time
+      Dex.Database.Types.Candle
+      Dex.Database.Types.DatabaseToken
+      Dex.Database.Types.Exchange
+      Dex.Database.Types.Setup
+      Dex.Hex
+      Dex.Identification
+      Dex.IO
+      Dex.Managers.Sundae
+      Dex.Managers.Sundae.Calculator
+      Dex.Metadata
+      Dex.Metadata.Properties
+      Dex.Metadata.Request
+      Dex.Metadata.Response
+      Dex.Monad
+      Dex.Parsers
+      Dex.STIO
+      Dex.STM
+      Dex.STM.Alternative
+      Dex.STM.CacheMap
+      Dex.STM.Time
+      Dex.STM.TPQueue
+      Dex.Types
+      Dex.Types.Anything
+      Dex.Types.AssetMap
+      Dex.Types.Choice
+      Dex.Types.Component
+      Dex.Types.Context
+      Dex.Types.Entry
+      Dex.Types.Exchange
+      Dex.Types.ExtraTransaction
+      Dex.Types.FullTransaction
+      Dex.Types.KnownToken
+      Dex.Types.Mint
+      Dex.Types.TokenSale
+      Dex.Types.Transaction
+      Dex.Types.TxInput
+      Dex.Types.TxOutput
+      Lib
+  other-modules:
+      Paths_DexMarketCap
+  hs-source-dirs:
+      src
+  default-extensions:
+      BangPatterns
+      DataKinds
+      DeriveFunctor
+      DeriveGeneric
+      DerivingStrategies
+      FlexibleContexts
+      FlexibleInstances
+      GeneralizedNewtypeDeriving
+      ImportQualifiedPost
+      KindSignatures
+      LambdaCase
+      MultiWayIf
+      NumericUnderscores
+      OverloadedStrings
+      ScopedTypeVariables
+      TupleSections
+      TypeApplications
+      TypeOperators
+      ViewPatterns
+  build-depends:
+      aeson >=2.0.1
+    , async
+    , base >=4.7 && <5
+    , binary
+    , bson
+    , bytestring
+    , containers
+    , directory
+    , exceptions
+    , focus
+    , hashable
+    , http-api-data
+    , http-client
+    , http-client-tls
+    , http-types
+    , list-t
+    , mongoDB
+    , optparse-applicative
+    , servant
+    , servant-client
+    , servant-server
+    , stm
+    , stm-containers
+    , text
+    , time
+    , transformers
+    , vector
+    , wai
+    , warp
+  default-language: Haskell2010
+
+executable DexMarketCap-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_DexMarketCap
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      DexMarketCap
+    , aeson >=2.0.1
+    , async
+    , base
+    , binary
+    , bson
+    , bytestring
+    , containers
+    , directory
+    , exceptions
+    , focus
+    , hashable
+    , http-api-data
+    , http-client
+    , http-client-tls
+    , http-types
+    , list-t
+    , mongoDB
+    , optparse-applicative
+    , servant
+    , servant-client
+    , servant-server
+    , stm
+    , stm-containers
+    , text
+    , time
+    , transformers
+    , vector
+    , wai
+    , warp
+  default-language: Haskell2010
+
+test-suite DexMarketCap-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_DexMarketCap
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      DexMarketCap
+    , aeson
+    , async
+    , base
+    , binary
+    , bson
+    , bytestring
+    , containers
+    , directory
+    , exceptions
+    , focus
+    , hashable
+    , hspec
+    , hspec-wai
+    , hspec-wai-json
+    , http-api-data
+    , http-client
+    , http-client-tls
+    , http-types
+    , list-t
+    , mongoDB
+    , optparse-applicative
+    , servant
+    , servant-client
+    , servant-server
+    , stm
+    , stm-containers
+    , text
+    , time
+    , transformers
+    , vector
+    , wai
+    , warp
+  default-language: Haskell2010

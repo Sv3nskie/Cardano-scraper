@@ -1,0 +1,102 @@
+name:                DexMarketCap
+version:             0.1.0.0
+github:              "mlabs-haskell/DexMarketCap"
+license:             BSD3
+author:              "David Wilson"
+maintainer:          "example@example.com"
+copyright:           "2022 MLabs"
+
+extra-source-files:
+- README.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/mlabs-haskell/DexMarketCap#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- aeson >= 2.0.1
+- async
+- binary
+- bson
+- bytestring
+- containers
+- directory
+- exceptions
+- focus
+- hashable
+- http-api-data
+- http-client
+- http-client-tls
+- http-types
+- list-t
+- mongoDB
+- optparse-applicative
+- servant
+- servant-client
+- servant-server
+- stm
+- stm-containers
+- text
+- time
+- transformers
+- vector
+- wai
+- warp
+
+library:
+  source-dirs: src
+  default-extensions:
+    - BangPatterns
+    - DataKinds
+    - DeriveFunctor
+    - DeriveGeneric
+    - DerivingStrategies
+    - FlexibleContexts
+    - FlexibleInstances
+    - GeneralizedNewtypeDeriving
+    - ImportQualifiedPost
+    - KindSignatures
+    - LambdaCase
+    - MultiWayIf
+    - NumericUnderscores
+    - OverloadedStrings
+    - ScopedTypeVariables
+    - TupleSections
+    - TypeApplications
+    - TypeOperators
+    - ViewPatterns
+
+executables:
+  DexMarketCap-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - base
+    - DexMarketCap
+    - optparse-applicative
+
+tests:
+  DexMarketCap-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - base
+    - DexMarketCap
+    - hspec
+    - hspec-wai
+    - hspec-wai-json
+    - aeson
